@@ -1,5 +1,5 @@
-#ifndef __WINDOW__
-	#define __WINDOW__
+#ifndef __OBJECT__
+	#define __OBJECT__
 	#include <string>
 
 using namespace std;

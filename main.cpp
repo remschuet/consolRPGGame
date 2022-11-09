@@ -7,6 +7,7 @@
 #include "human.h"
 #include "object.h"
 
+
 using namespace std;
 
 void displayInformation(int information, int yPos, string texte, string place ) 
