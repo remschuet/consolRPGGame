@@ -2,9 +2,10 @@
 #include <conio.h>
 #include <string>
 #include <iomanip>
+#include <Windows.h>
 #include "cvm 21.h"
 #include "human.h"
-#include <Windows.h>
+#include "object.h"
 
 using namespace std;
 
@@ -31,6 +32,9 @@ int main()
 {
 	char direction;
 
+	// Init Object
+
+
 	// Init player
 	Human player;
 	player.set_values(80, 15);
@@ -47,6 +51,7 @@ int main()
 		// Display information
 		player.displayHuman("(^_^)");
 		enemy.displayHuman("(>_<)");
+
 
 		displayInformation(player.getPositionX(), 3, "Position en X", "Right");
 		displayInformation(player.getPositionY(), 4, "Position en Y", "Right");

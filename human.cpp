@@ -5,15 +5,18 @@
 
 using namespace std;
 
+
 int Human::getPositionX()
 {
 	return this->positionX;
 }
 
+
 int Human::getPositionY()
 {
 	return this->positionY;
 }
+
 
 void Human::set_values(int x, int y) 
 {
@@ -21,11 +24,13 @@ void Human::set_values(int x, int y)
 	this->positionY = y;
 }
 
+
 void Human::displayHuman(string HumanDesign)
 {
 	gotoxy(this->positionX, this->positionY);
 	cout << HumanDesign;
 }
+
 
 void Human::calculNextPositionXY(char direction)
 {
@@ -46,6 +51,7 @@ void Human::calculNextPositionXY(char direction)
 	if (this->canMove)
 		this->movementHumanXY(direction);
 }
+
 
 void Human::movementHumanXY(char direction)
 {
