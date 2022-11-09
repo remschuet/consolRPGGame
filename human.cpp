@@ -53,9 +53,9 @@ void Human::movementHumanXY(char direction)
 	switch (direction)
 	{
 	case 'w': this->positionY -= 1; break;
-	case 'a': this->positionX -= 3; break;
+	case 'a': this->positionX -= 2; break;
 	case 's': this->positionY += 1; break;
-	case 'd': this->positionX += 3;
+	case 'd': this->positionX += 2;
 	}
 }
 

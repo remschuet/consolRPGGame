@@ -8,23 +8,32 @@
 
 using namespace std;
 
-void displayInformation(int information, int yPos, string texte) {
-	gotoxy(98, yPos);
-	cout << information;
-	gotoxy(103, yPos);
-	cout << texte;
+void displayInformation(int information, int yPos, string texte, string place ) 
+{
+	if (place == "Right")
+	{
+		gotoxy(98, yPos);
+		cout << information;
+		gotoxy(103, yPos);
+		cout << texte;
+	}
+	else if (place == "Left")
+	{
+		gotoxy(4, yPos);
+		cout << information;
+		gotoxy(9, yPos);
+		cout << texte;
+	}
 }
 
 
 int main()
 {
-	int playerPv = 100;
-	int pointMagie = 0;
 	char direction;
 
 	// Init player
 	Human player;
-	player.set_values(15, 15);
+	player.set_values(80, 15);
 	player.displayHuman("(^_^)");
 
 	Human enemy;
@@ -39,10 +48,10 @@ int main()
 		player.displayHuman("(^_^)");
 		enemy.displayHuman("(>_<)");
 
-		displayInformation(playerPv, 1, "Points de vie");
-		displayInformation(pointMagie, 2, "Points de magie");
-		displayInformation(player.getPositionX(), 25, "Position en X");
-		displayInformation(player.getPositionY(), 26, "Position en Y");
+		displayInformation(player.getPositionX(), 3, "Position en X", "Right");
+		displayInformation(player.getPositionY(), 4, "Position en Y", "Right");
+		displayInformation(enemy.getPositionX(), 3, "Position en X", "Left");
+		displayInformation(enemy.getPositionY(), 4, "Position en Y", "Left");
 
 		direction = _getch();
 
