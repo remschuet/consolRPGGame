@@ -33,7 +33,7 @@ int main()
 	char direction;
 
 	// Init Object
-	
+	Object mur;
 
 	// Init player
 	Human player;
