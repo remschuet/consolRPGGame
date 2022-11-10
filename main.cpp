@@ -31,7 +31,7 @@ void displayInformation(int information, int yPos, string texte, string place )
 
 int main()
 {
-	char direction;
+	char direction = ' ';
 	int timer = 0;
 
 	// Init Object
@@ -63,7 +63,7 @@ int main()
 		displayInformation(enemy.getPositionX(), 3, "Position en X", "Left");
 		displayInformation(enemy.getPositionY(), 4, "Position en Y", "Left");
 
-		direction = _getch();
+		// direction = _getch();
 
 		if (GetAsyncKeyState(VK_UP))
 			direction = 'w';
@@ -80,7 +80,7 @@ int main()
 		direction = ' ';
 
 		// Call every secondes
-		if (timer % 1000 == 0)
+		if (timer % 500 == 0)
 		{
 			// enemy choose direction
 			enemy.ChooseDirection(player.getPositionX(), player.getPositionY(), 

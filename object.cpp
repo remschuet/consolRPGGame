@@ -29,6 +29,7 @@ void Object::set_values(int x, int topY, int downY)
 	this->positionX = x;
 }
 
+
 void Object::displayObject(string objectDesign)
 {
 	gotoxy(this->positionX, this->positionTopY);

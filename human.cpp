@@ -48,14 +48,22 @@ void Human::calculNextPositionXY(char direction)
 	VerifyIfHumanInScreen();
 	// If Human in screen, move
 	if (this->canMove)
-		this->movementHumanXY(direction);
+		this->movementHumanXY(direction, ' ');
 }
 
 
-void Human::movementHumanXY(char direction)
+void Human::movementHumanXY(char firstDirection, char secondDirection)
 {
 	// Move human position
-	switch (direction)
+	switch (firstDirection)
+	{
+	case 'w': this->positionY -= 1; break;
+	case 'a': this->positionX -= 2; break;
+	case 's': this->positionY += 1; break;
+	case 'd': this->positionX += 2;
+	}
+
+	switch (secondDirection)
 	{
 	case 'w': this->positionY -= 1; break;
 	case 'a': this->positionX -= 2; break;
@@ -66,7 +74,35 @@ void Human::movementHumanXY(char direction)
 
 void Human::ChooseDirection(int playerX, int playerY, int wallX, int wallTopY, int wallDownY)
 {
-	// if (this->positionX
+	char firstDirection = ' ';
+	bool secondBeAble = true;
+	char secondDirection = ' ';
+
+	for (int i = 0; i <= 1; i++)
+	{
+		if (firstDirection != 'd')
+			if (this->positionX < playerX)
+				secondDirection = 'd';
+
+		if (firstDirection != 'a')
+			if (this->positionX > playerX)
+			secondDirection = 'a';
+
+		if (firstDirection != 's')
+			if (this->positionY < playerY)
+				secondDirection = 's';
+
+		if (firstDirection != 'w')
+			if (this->positionY > playerY)
+				secondDirection = 'w';
+
+		if (i == 0)
+		firstDirection = secondDirection;
+
+	}
+
+	movementHumanXY(firstDirection, secondDirection);
+
 }
 
 

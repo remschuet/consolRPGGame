@@ -10,7 +10,7 @@ public:
 	void set_values(int, int);
 	void displayHuman(string);
 	void calculNextPositionXY(char);
-	void movementHumanXY(char);
+	void movementHumanXY(char, char);
 	void ChooseDirection(int, int, int, int, int);
 	void VerifyIfHumanInScreen();
 	int getPositionX();
