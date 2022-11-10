@@ -35,6 +35,8 @@ int main()
 
 	// Init Object
 	Object mur;
+	mur.set_values(50, 10, 20);
+	mur.displayObject("|");
 
 	// Init player
 	Human player;
@@ -52,6 +54,7 @@ int main()
 		// Display information
 		player.displayHuman("(^_^)");
 		enemy.displayHuman("(>_<)");
+		mur.displayObject("|");
 
 
 		displayInformation(player.getPositionX(), 3, "Position en X", "Right");

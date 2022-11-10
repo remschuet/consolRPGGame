@@ -22,18 +22,23 @@ int Object::getPositionX()
 }
 
 
-void Object::set_values(int topx, int downx, int y)
+void Object::set_values(int x, int topY, int downY)
 {
-	this->positionTopY = topx;
-	this->positionTopY = downx;
-	this->positionX = y;
+	this->positionTopY = topY;
+	this->positionDownY = downY;
+	this->positionX = x;
 }
 
 void Object::displayObject(string objectDesign)
 {
-	for (this->positionTopY; this->positionTopY < this->positionDownY; ++ this->positionTopY)
+	gotoxy(this->positionX, this->positionTopY);
+	
+	int posY = this->positionTopY;
+
+	gotoxy(this->positionX, this->positionTopY);
+	for (int i = 0; i < (this->positionDownY - this->positionTopY); i++)
 	{
-		gotoxy(this->positionX, this->positionX);
+		gotoxy(this->positionX, posY++);
 		cout << objectDesign;
 	}
 }
