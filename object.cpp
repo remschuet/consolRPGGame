@@ -33,10 +33,10 @@ void Object::displayObject(string objectDesign)
 {
 	gotoxy(this->positionX, this->positionTopY);
 	
-	int posY = this->positionTopY;
+	int posY = this->positionTopY - 1;
 
 	gotoxy(this->positionX, this->positionTopY);
-	for (int i = 0; i < (this->positionDownY - this->positionTopY); i++)
+	for (int i = 0; i <= (this->positionDownY - this->positionTopY); i++)
 	{
 		gotoxy(this->positionX, posY++);
 		cout << objectDesign;

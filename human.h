@@ -11,6 +11,7 @@ public:
 	void displayHuman(string);
 	void calculNextPositionXY(char);
 	void movementHumanXY(char);
+	void ChooseDirection(int, int, int, int, int);
 	void VerifyIfHumanInScreen();
 	int getPositionX();
 	int getPositionY();
@@ -20,6 +21,10 @@ private:
 	int positionY = 0;
 	int nextPositionY = 0;
 	int nextPositionX = 0;
+	int posWallX = 0;
+	int posWallTopY = 0;
+	int posWallDownY = 0;
+
 	bool canMove = false;
 
 };

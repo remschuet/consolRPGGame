@@ -24,7 +24,6 @@ void Human::set_values(int x, int y)
 	this->positionY = y;
 }
 
-
 void Human::displayHuman(string HumanDesign)
 {
 	gotoxy(this->positionX, this->positionY);
@@ -63,6 +62,11 @@ void Human::movementHumanXY(char direction)
 	case 's': this->positionY += 1; break;
 	case 'd': this->positionX += 2;
 	}
+}
+
+void Human::ChooseDirection(int playerX, int playerY, int wallX, int wallTopY, int wallDownY)
+{
+	// if (this->positionX
 }
 
 

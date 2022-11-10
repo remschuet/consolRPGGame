@@ -32,10 +32,11 @@ void displayInformation(int information, int yPos, string texte, string place )
 int main()
 {
 	char direction;
+	int timer = 0;
 
 	// Init Object
 	Object mur;
-	mur.set_values(50, 10, 20);
+	mur.set_values(50, 10, 20);		// x , yTop(include), yDown(include)
 	mur.displayObject("|");
 
 	// Init player
@@ -77,6 +78,16 @@ int main()
 			player.calculNextPositionXY(direction);
 
 		direction = ' ';
+
+		// Call every secondes
+		if (timer % 1000 == 0)
+		{
+			// enemy choose direction
+			enemy.ChooseDirection(player.getPositionX(), player.getPositionY(), 
+				mur.getPositionX(), mur.getPositionTopY(), mur.getPositionDownY());
+		}
+
+		timer += 50;
 		Sleep(50);
 	}
 }
