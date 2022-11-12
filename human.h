@@ -11,7 +11,7 @@ public:
 	void displayHuman(string);
 	void calculNextPositionXY(char);
 	void movementHumanXY(char, char);
-	void CalculPossibilityDirection(int , int , int , int , int );
+	bool ChoosePath(int , int , int , int , int, char, char);
 	void ChooseDirection(int, int, int, int, int);
 	void VerifyIfHumanInScreen();
 	int getPositionX();

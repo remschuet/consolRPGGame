@@ -39,10 +39,10 @@ void Human::calculNextPositionXY(char direction)
 	// Calcul the next position
 	switch (direction)
 	{
-	case 'w': this->nextPositionY = this->positionY - 1; break;
-	case 'a': this->nextPositionX = this->positionX - 1; break;
-	case 's': this->nextPositionY = this->positionY + 1; break;
-	case 'd': this->nextPositionX = this->positionX + 1;
+		case 'w': this->nextPositionY = this->positionY - 1; break;
+		case 'a': this->nextPositionX = this->positionX - 1; break;
+		case 's': this->nextPositionY = this->positionY + 1; break;
+		case 'd': this->nextPositionX = this->positionX + 1;
 	}
 	// Calcul if Human in screen
 	VerifyIfHumanInScreen();
@@ -73,27 +73,63 @@ void Human::movementHumanXY(char firstDirection, char secondDirection)
 }
 
 
-void Human::CalculPossibilityDirection(int playerX, int playerY, int wallX, int wallTopY, int wallDownY)
+
+bool Human::ChoosePath(int playerX, int playerY, int wallX, int wallTopY, int wallDownY, char firstDirection, char secondDirection)
 {
 	int lenghtPath1 = 0;
 	int lenghtPath2 = 0;
-	char firstDirection = ' ';
-	char secondDirection = ' ';
+
 	int value1 = 0;
 	int value2 = 0;
+	bool touchWall;
+	int humanPositionX, humanPositionY;
+
+	humanPositionX = this->positionX;
+	humanPositionY = this->positionY;
+	touchWall = false;
+
+	for (humanPositionX; humanPositionX != playerX; )
+	{
+		switch (firstDirection)
+		{
+			case 'd':
+				humanPositionX++;
+				break;
+			case 'a':
+				humanPositionX--;
+				break;
+			case 'w':
+				humanPositionY--;
+				break;
+			case 's':
+				humanPositionY++;
+		}
+		for (humanPositionY; humanPositionY != playerY; )	// calculer le x du mur
+		{
+			switch (secondDirection)
+			{
+				case 'w':
+					humanPositionY--;
+					break;
+				case 's':
+					humanPositionY++;
+			}
+			
+			if (humanPositionX == wallX || humanPositionY == wallTopY)
+			{
+
+			//for (wallTopY; wallTopY <= wallDownY; wallTopY++)			// calculer la hauteur du meur
+					//if (humanPositionY == wallTopY)
+				touchWall = true;
+				break;
+			}
+		}
+	}
+	return touchWall;
 
 	/*
-	if (this->positionY > wallTopY)
-		firstDirection = 'w';
-	else
-		firstDirection = 's';
-	if (this->positionX < playerX)
-		secondDirection = 'd';
-	else
-		secondDirection = 'a';
-	*/
 
-	// calcul pour droit et gauche
+// calcul pour droit et gauche
 	value1 = pow(this->positionX - wallX, 2);
 
 // calcul pour monter
@@ -113,7 +149,7 @@ void Human::CalculPossibilityDirection(int playerX, int playerY, int wallX, int 
 		value2 = 0;
 	lenghtPath2 = sqrt(value1 + value2);				// hypothénuse
 	// calculer le segment du mur au joueur
-
+	*/
 }
 
 
@@ -128,14 +164,6 @@ void Human::ChooseDirection(int playerX, int playerY, int wallX, int wallTopY, i
 
 	for (int i = 0; i <= 1; i++)
 	{
-		if (firstDirection != 'd')
-			if (this->positionX < playerX)
-				secondDirection = 'd';
-
-		if (firstDirection != 'a')
-			if (this->positionX > playerX)
-			secondDirection = 'a';
-
 		if (firstDirection != 's')
 			if (this->positionY < playerY)
 				secondDirection = 's';
@@ -144,12 +172,20 @@ void Human::ChooseDirection(int playerX, int playerY, int wallX, int wallTopY, i
 			if (this->positionY > playerY)
 				secondDirection = 'w';
 
+		if (firstDirection != 'd')
+			if (this->positionX < playerX)
+				secondDirection = 'd';
+
+		if (firstDirection != 'a')
+			if (this->positionX > playerX)
+				secondDirection = 'a';
+
 		if (i == 0)
-		firstDirection = secondDirection;
-
+			firstDirection = secondDirection;
 	}
-
-	movementHumanXY(firstDirection, secondDirection);
+	bool touchWall = ChoosePath(playerX, playerY, wallX, wallTopY, wallDownY, firstDirection, secondDirection);
+	if (touchWall)
+		movementHumanXY(firstDirection, secondDirection);
 
 }
 
