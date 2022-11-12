@@ -45,7 +45,7 @@ int main()
 	player.displayHuman("(^_^)");
 
 	Human enemy;
-	enemy.set_values(20, 12);
+	enemy.set_values(42, 12);
 	enemy.displayHuman("(>_<)");
 
 

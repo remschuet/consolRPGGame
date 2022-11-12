@@ -73,14 +73,8 @@ void Human::movementHumanXY(char firstDirection, char secondDirection)
 }
 
 
-
 bool Human::ChoosePath(int playerX, int playerY, int wallX, int wallTopY, int wallDownY, char firstDirection, char secondDirection)
 {
-	int lenghtPath1 = 0;
-	int lenghtPath2 = 0;
-
-	int value1 = 0;
-	int value2 = 0;
 	bool touchWall;
 	int humanPositionX, humanPositionY;
 
@@ -88,42 +82,28 @@ bool Human::ChoosePath(int playerX, int playerY, int wallX, int wallTopY, int wa
 	humanPositionY = this->positionY;
 	touchWall = false;
 
-	for (humanPositionX; humanPositionX != playerX; )
-	{
-		switch (firstDirection)
-		{
-			case 'd':
-				humanPositionX++;
-				break;
-			case 'a':
-				humanPositionX--;
-				break;
-			case 'w':
-				humanPositionY--;
-				break;
-			case 's':
-				humanPositionY++;
-		}
-		for (humanPositionY; humanPositionY != playerY; )	// calculer le x du mur
-		{
-			switch (secondDirection)
-			{
-				case 'w':
-					humanPositionY--;
-					break;
-				case 's':
-					humanPositionY++;
-			}
-			
-			if (humanPositionX == wallX || humanPositionY == wallTopY)
-			{
 
-			//for (wallTopY; wallTopY <= wallDownY; wallTopY++)			// calculer la hauteur du meur
-					//if (humanPositionY == wallTopY)
-				touchWall = true;
-				break;
+	while (humanPositionX != playerX || humanPositionY != playerY)
+	{
+		if (humanPositionX > playerX)
+			--humanPositionX;
+		else if (humanPositionX < playerX)
+			++humanPositionX;
+
+		if (humanPositionY > playerY)
+			--humanPositionY;
+		else if (humanPositionY < playerY)
+			++humanPositionY;
+		
+		if (humanPositionX == wallX)
+			for (wallTopY; wallTopY <= wallDownY; wallTopY++)			// calculer la hauteur du meur
+			{
+				if (humanPositionY == wallTopY)
+				{
+					touchWall = true;
+					break;
+				}
 			}
-		}
 	}
 	return touchWall;
 
@@ -156,9 +136,8 @@ bool Human::ChoosePath(int playerX, int playerY, int wallX, int wallTopY, int wa
 void Human::ChooseDirection(int playerX, int playerY, int wallX, int wallTopY, int wallDownY)
 {
 	char firstDirection = ' ';
-	bool secondBeAble = true;
 	char secondDirection = ' ';
-	
+
 	// Calculer le chemin le plus rapide
 	// partir dans la direction
 
@@ -184,7 +163,7 @@ void Human::ChooseDirection(int playerX, int playerY, int wallX, int wallTopY, i
 			firstDirection = secondDirection;
 	}
 	bool touchWall = ChoosePath(playerX, playerY, wallX, wallTopY, wallDownY, firstDirection, secondDirection);
-	if (touchWall)
+	if (!(touchWall))
 		movementHumanXY(firstDirection, secondDirection);
 
 }
